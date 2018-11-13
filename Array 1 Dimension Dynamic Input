@@ -1,0 +1,33 @@
+package modul.pkg1;
+import java.util.Scanner;
+/**
+ *
+ * @author Direct
+ */
+public class test {
+    public void array (){
+        int i;
+        System.out.print("Input banyak data = ");
+        Scanner ea = new Scanner(System.in);
+        i = ea.nextInt();
+        int a[]=new int[i];
+        
+        for (int x=0; x<i; x++){
+            System.out.print("ISI data = ");
+            
+            a[x]= ea.nextInt();
+        }
+        
+        for (int x=0; x<i; x++){
+             System.out.print(a[x]+" ");
+//           System.out.print(" ");
+             
+   
+    }
+   
+ }
+    public static void main(String[] args) {
+        test lalal = new test();
+        lalal.array();    }
+    
+}
