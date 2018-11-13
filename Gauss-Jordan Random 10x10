@@ -1,0 +1,44 @@
+package test;
+import java.util.Random;
+public class gauss
+{   public static Random ea = new Random();    
+    public static int A[][] = new int[10][10];
+    public static float B[] = new float[10];
+    public static void one()
+    {  for (int i=0;i<10;i++) {
+		for (int j=0;j<10;j++) {
+                 
+                    A [i][j] = ea.nextInt(300) ;}}}
+    public static void two(){  
+        B[0] = 1; B[1] = 0; B[2] = -1; B[3] = 0; B[4] = 1;
+        B[5] = 0; B[6] = -1; B[7] = 0; B[8] = 1; B[9] = -2;
+        }
+    static void keluar(int A[][], float B[]){
+        for (int i=0;i<10;i++){
+            for (int j=0;j<10;j++) {
+                System.out.print("|" +A[i][j]+"|\t");}
+            System.out.print("  =  " +B[i]);
+            System.out.println("    "); }}
+    public static void main(String[] args) {
+        int temp;
+        one();
+        two();
+        System.out.println("\nAugmented Matriks [A|B]= ");
+        keluar (A,B);
+        for (int m=0;m<10;m++) {
+            temp=A[m][m];
+            for (int n=0;n<10;n++) {
+                A[m][n]=A[m][n]/temp;}
+            B[m]=B[m]/temp;
+            for (int i=0;i<10;i++) {
+                if (i!=m) {
+                    temp=A[i][m];
+                    for (int j=m;j<10;j++) {
+                        A[i][j]=A[i][j]-(temp*A[m][j]);}
+                    B[i]=B[i]-(temp*B[m]);      }}}
+        System.out.println("\nEliminasi Gauss-Jordan");
+        keluar(A,B);
+        System.out.println("\nNilai x1, x2, x3, x4, x5, x6, x7, x8, x9, x10 ADALAH ");
+        for (int i=0;i<10;i++) {
+            System.out.println ("X"+(i+1)+" = " +B[i]);  }}
+}
