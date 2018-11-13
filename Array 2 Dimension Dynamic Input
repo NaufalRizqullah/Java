@@ -1,0 +1,33 @@
+package modul.pkg1;
+import java.util.Scanner;
+/**
+ *
+ * @author Direct
+ */
+public class Array2 {
+    
+    public static void main(String[] args) {
+        
+        Scanner temp = new Scanner(System.in);
+        int i,j;
+        System.out.print("MASUKAN BARIS = ");
+        i = temp.nextInt();
+        System.out.print("MASUKAN KOLOM = ");
+        j = temp.nextInt();
+        int a[][] = new int[i][j];
+        
+        for (int z=0; z<i; z++){
+            for (int y=0; y<j; y++) {
+                System.out.println("Baris ke - "+ z +"\t kolom ke - "+ y);
+                a[z][y] = temp.nextInt(); }
+        }
+        System.out.println(" ");
+     for (int z=0; z<i; z++) {
+         for (int y=0; y<j; y++) {
+             
+             System.out.print("\t"+a[z][y]);
+         }   System.out.println(" \n");
+        }
+    }
+            
+    }
