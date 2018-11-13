@@ -1,0 +1,52 @@
+package test;
+import java.util.Scanner;
+/**
+ *
+ * @author Direct
+ */
+public class NewtonRaphson {
+    //f'(x)=2x-2 e^-2x sin x+ e^-2x cos x
+    public static double f (double x){
+        double fx;
+            fx=(2*x-(Math.exp(-2*x))*(Math.sinh(x))+(Math.exp(-2*x))*(Math.cos(x)));
+        return fx; 
+    }
+    //f''(x)=2+2e^-2x cos x -4e^-2x sin x + e-2x-sinx
+    public static double faksen (double x){
+        double faksen1;
+            faksen1=(2+(2*Math.exp(-2*x))*Math.cos(x)-(4*(Math.exp(-2*x)))*(Math.sin(x))+(Math.exp(-2*x))-(Math.sin(x)));
+        return faksen1;
+    }
+   
+ public static double Newtonraphsongasmamanx (){
+     double x,error,x1,y,z;
+     int iterasi_number=0;
+         Scanner sc = new Scanner(System.in);
+         
+         System.out.println("Input nilai x0 =");
+         x=sc.nextDouble();
+         System.out.println("Input nilai batas error =");
+         error=sc.nextDouble();
+         
+         do{
+         y=Math.abs(f(x));
+         z=faksen(x);
+         x1=x-(Math.abs(f(x))/faksen(x));
+         
+            System.out.println("\nf(x): "+ y);
+            System.out.println("f'(x): "+ z);
+            System.out.println("x1: "+ x1);
+         
+         x=x1;
+         
+         }while (Math.abs(f(x))>=error);
+            System.out.println("\nf(x): "+ y);
+            System.out.println("f'(x): "+ z);
+            System.out.println("x1: "+ x1);
+            System.out.println("=== ITERASI SELESAI ===");
+         return 0;
+    } 
+public static void main(String[] args) {
+         Newtonraphsongasmamanx ();
+    }
+}
