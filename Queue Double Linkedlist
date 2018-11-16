@@ -1,0 +1,119 @@
+import java.util.Scanner;
+
+class Jurnal2{
+	node head=null;
+	node tail=null;
+	
+	void addfront(int b){
+		node baru = new node(b);
+		if(head==null){
+			head=baru;
+			tail=baru;
+		}else{
+			baru.next=head;
+			head.prev=head;
+			head=baru;
+		}
+	}
+	void addback(int b){
+		node baru = new node(b);
+		if(head==null){
+			head=baru;
+			tail=baru;
+		}else{
+			baru.prev=tail;
+			tail.next=baru;
+			tail=baru;
+		}
+	}
+	void dellfront(){
+		if(head==null){
+			System.out.println("List Kosong");
+		}else{
+			head=head.next;
+			head.prev=null;
+		}
+	}
+	
+	void dellback(){
+		if(head==null){
+			System.out.println("List Kosong");
+		}else{
+			tail=tail.prev;;
+			tail.next=null;
+		}
+	}
+	void tampil(){
+		node tmp=head;
+		if(head==null){
+			System.out.println("List Kosong");
+		}else{
+			while(tmp !=null){
+				System.out.print(tmp.data +" ");
+				tmp=tmp.next;
+			}
+		}System.out.println();
+	}
+	void del(int b){
+		node tmp=head;
+		node after=tmp.next;
+		if(tmp.next != null){
+		while(tmp.next.data != b){
+			tmp=tmp.next;
+			after=after.next;
+		}
+		tmp.next=after.next;
+		after=null;
+		}
+	}
+	void delall(){
+		head=null;
+	}
+	public static void main (String [] args){
+		
+		Jurnal2 x= new Jurnal2();
+		Scanner input = new Scanner(System.in);
+		System.out.println("Masukkan Antrian :");
+			
+			for(int i=1;i<=50;i++){
+				x.addback(i);
+		}
+		x.tampil();
+	
+		System.out.println("Keluarkan Antrian :");
+			for(int i=1; i<=15; i++){
+				x.dellfront();
+			}
+			x.tampil();
+			
+		System.out.println("Lanjut ke hari kedua :");
+		System.out.println("=====Tidak ada antrian=====");
+			
+				x.delall();
+			
+		System.out.println("Masukkan No Antrian (20-30):");
+			for(int i=20; i<=30; i++){
+				x.addback(i);
+			}
+			x.tampil();
+		
+		System.out.println("=====Tidak ada antrian=====");
+			
+				x.delall();
+				
+		System.out.println("Masukkan Antrian (16-19):");
+			for(int i=16; i<=19; i++){
+				x.addback(i);
+			}
+				x.tampil();
+		
+		System.out.println("Masukkan Antrian (31-50):");
+			for(int i=31; i<=50; i++){
+				x.addback(i);
+			}
+				x.tampil();
+			}
+}
+
+
+		
