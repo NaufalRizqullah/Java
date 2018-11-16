@@ -1,0 +1,83 @@
+package modul2;
+public class Node{
+    int data;
+    Node next;
+    Node prev;
+    
+    public Node(int data){
+        this.data = data;
+    }   
+}
+
+class stack{
+    Node head;
+    Node tail;
+    
+    public stack(){
+        head = null;
+        tail = null;
+    }
+    
+    public void add(int data){
+        Node temp = new Node(data);
+        head = temp;
+        tail = temp;
+        temp.prev = null;
+        temp.next = tail.next;
+    }
+    
+    public void addafter(int data){
+        Node temp = new Node(data);
+        tail.next = temp;
+        temp.prev = tail;
+        tail = temp;
+        temp.next = tail.next;
+    }
+    
+    public void deleteback(){
+    Node temp = tail;
+    tail = temp.prev;
+    tail.next = null;
+    temp.prev = null;
+    }
+    
+    void delete20_10(){
+        Node bom = tail;
+        while (bom.data != 9){
+            bom = bom.prev;
+            deleteback();
+        }
+    }
+    
+    void tampilbelakang(){
+    Node current = tail;
+    while (current != null){
+            System.out.print(current.data + " ");
+            current = current.prev;
+        } System.out.println("");
+    }
+    
+    void tampildepan(){
+    Node current = head;
+    while (current != null){
+            System.out.print(current.data + " ");
+            current = current.next;
+        } System.out.println("");
+    }
+    public static void main(String[] args) {
+    stack ea = new stack();
+
+    ea.add(1);
+    for (int i = 2; i<=20; i++){
+        ea.addafter(i);
+    }
+    ea.tampildepan();
+    ea.delete20_10();
+    ea.tampildepan();
+    for (int i = 20; i>=11; i--){
+        ea.addafter(i);
+    }
+    ea.tampildepan();
+    }
+    
+}
