@@ -1,0 +1,67 @@
+
+
+class Nodes{
+	int data;
+	Nodes next;
+	Nodes prev;
+	Nodes(int data){
+		this.data=data;
+	}
+}
+
+class Tree{
+	static Nodes root;
+	
+	void insert(int data){
+		if(root==null){
+			root = new Nodes(data);
+			root.next=root.prev=null;
+		}
+		else{
+			insert_leaf(root, data);
+		}
+	}
+	void insert_leaf(Nodes leaf, int data){
+		if(data<leaf.data){
+			if(leaf.next!=null){
+				insert_leaf(leaf.next, data);
+			}
+			else{
+				Nodes tmp = new Nodes(data);
+				leaf.next = tmp;
+			}
+		}
+		else{
+			if(leaf.prev!=null){
+				insert_leaf(leaf.prev, data);
+			}
+			else{
+				Nodes tmp = new Nodes(data);
+				leaf.prev = tmp;
+			}
+		}
+	}
+	void preOrder(Nodes leaf){
+		if(leaf!=null){
+			System.out.println(leaf.data+" ");
+			preOrder(leaf.next);
+			preOrder(leaf.prev);
+		}
+		else{
+			return;
+		}
+	}
+	public static void main(String[] args){
+		Tree a = new Tree();
+		a.insert(10);
+		a.insert(11);
+		a.insert(12);
+		a.insert(13);
+		a.insert(14);
+		a.insert(15);
+		a.insert(16);
+		System.out.println("Preorder :\n");
+		
+		a.preOrder(root);
+	}
+}
