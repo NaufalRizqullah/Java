@@ -1,0 +1,50 @@
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Sequence
+{
+
+   public static int SequenceuentialSearch(int[] index, int target)
+   {
+      for (int j = 0; j < index.length; j++)
+      {
+         if (index[j] == target)
+         {
+             return j;
+         }
+     }
+     return -1;
+   }
+   
+   public void showArr(int [] arr) {
+		for(int i = 0;i<arr.length;i++) {
+		System.out.print("["+arr[i]+"]"+"  ");
+		}
+		System.out.println();
+	}
+   
+   public static void main(String[] args)
+   {
+      Sequence coba=new Sequence();
+      Random random=new Random();
+      Scanner input=new Scanner(System.in);
+      int[] arr =new int[10];
+      int index,temp;
+      
+      for(int i = 0;i<arr.length;i++) {
+			arr[i] = 1+random.nextInt(100);
+		}
+      
+      coba.showArr(arr);
+      System.out.print("posisi angka yang ingin dicari : ");
+      temp=input.nextInt();
+      index = SequenceuentialSearch(arr,temp);
+      System.out.println("Posisi angka yang dicari ada di array ke - "+index);
+      
+      System.out.print("posisi angka yang ingin dicari : ");
+      temp=input.nextInt();
+      index = SequenceuentialSearch(arr,temp);
+      System.out.println("Posisi angka yang dicari ada di array ke - "+index);
+   }
+}
