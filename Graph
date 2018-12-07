@@ -1,0 +1,116 @@
+public class Node {
+
+    String nama;
+    Node next;
+    Jalur jalan;
+
+    public Node() {
+    }
+}
+
+class Jalur {
+
+    int jarak;
+    Jalur next;
+    Node simpul;
+
+    public Jalur() {
+
+    }
+}
+
+class Graph {
+
+    Node pertama = null;
+
+    public void tambahsimpul(String nama) {
+        Node baru = new Node();
+        baru.nama = nama;
+        baru.next = null;
+        baru.jalan = null;
+        if (pertama == null) {
+            pertama = baru;
+        } else {
+            Node terakhir = pertama;
+            while (terakhir.next != null) {
+                terakhir = terakhir.next;
+            }
+            terakhir.next = baru;
+        }
+    }
+
+    public void tambahjalur(Node awal, Node akhir, int jarak) {
+        Jalur baru = new Jalur();
+        baru.jarak = jarak;
+        baru.simpul = akhir;
+
+        if (awal.jalan == null) {
+            awal.jalan = baru;
+        } else {
+            Jalur terakhir = awal.jalan;
+            while (terakhir.next != null) {
+                terakhir = terakhir.next;
+            }
+            terakhir.next = baru;
+        }
+    }
+
+    int tampil() {
+        Node current = pertama;
+        Node current1 = pertama;
+        int iterasi = 0;
+        while (current.next != null) {
+            current1 = current;
+            Jalur op = current.jalan;
+            System.out.println("Dari " + current1.nama + " Ke " + op.simpul.nama + " Dengan jarak " + op.jarak);
+            current1 = current1.next;
+            op = op.next;
+            current = current.next;
+            iterasi++;
+        }
+        System.out.println("Jumlah Jalur yang dilewati = " + iterasi);
+        return iterasi;
+    }
+
+    public Node cari(String ea) {
+        Node current = null;
+        Node x = pertama;
+        while (x != null) {
+            if (x.nama == ea) {
+                current = x;
+            }
+            x = x.next;
+        }
+        return current;
+    }
+
+    public static void main(String[] args) {
+        Graph nnn = new Graph();
+
+        nnn.tambahsimpul("Labuapi");
+        nnn.tambahsimpul("Lingkar");
+        nnn.tambahsimpul("Ampenan");
+        nnn.tambahsimpul("Gomong");
+        nnn.tambahsimpul("Unram");
+        nnn.tambahsimpul("Loang Baloq");
+
+        Node awal = nnn.cari("Labuapi");
+        Node akhir = nnn.cari("Lingkar");
+        nnn.tambahjalur(awal, akhir, 10);
+        Node satu = nnn.cari("Lingkar");
+        Node dua = nnn.cari("Ampenan");
+        nnn.tambahjalur(satu, dua, 15);
+        Node tiga = nnn.cari("Ampenan");
+        Node empat = nnn.cari("Gomong");
+        nnn.tambahjalur(tiga, empat, 5);
+        Node lima = nnn.cari("Gomong");
+        Node enam = nnn.cari("Unram");
+        nnn.tambahjalur(lima, enam, 5);
+        Node tujuh = nnn.cari("Unram");
+        Node delapan = nnn.cari("Loang Baloq");
+        nnn.tambahjalur(tujuh, delapan, 35);
+        
+        nnn.tampil();
+
+    }
+}
